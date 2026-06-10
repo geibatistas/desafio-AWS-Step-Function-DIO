@@ -62,3 +62,32 @@ O objetivo é consolidar conceitos de automação, mensageria e boas práticas d
 
 ## 📂 Estrutura do Repositório
 
+
+---
+
+## 📸 Capturas de Tela
+As imagens relevantes estão organizadas na pasta `/images`.  
+- **workflow-diagram.png** → Diagrama do Step Functions.  
+- **execution-monitor.png** → Tela de monitoramento de execução.  
+
+---
+
+## ⚠️ Boas práticas de segurança
+- Substitua `ACCOUNT_ID` e `REGION` por placeholders em exemplos.  
+- Não exponha ARNs completos de IAM Roles ou Execuções.  
+- Mostre apenas mensagens de erro genéricas, sem IDs sensíveis.  
+- Capture prints que ilustrem o fluxo, mas evite dados privados.  
+
+---
+
+## 🔗 Referências
+- [Documentação oficial AWS Step Functions](https://docs.aws.amazon.com/step-functions/)  
+- [AWS Lambda](https://docs.aws.amazon.com/lambda/)  
+- [AWS DynamoDB](https://docs.aws.amazon.com/dynamodb/)  
+- [AWS SNS](https://docs.aws.amazon.com/sns/)  
+
+---
+
+## ✨ Autor
+Desenvolvido por **Gei** durante o Bootcamp AWS.  
+
