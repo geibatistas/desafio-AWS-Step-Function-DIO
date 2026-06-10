@@ -1,1 +1,45 @@
+{
+  "Comment": "Workflow de validação de arquivo com Lambda, DynamoDB e SNS",
+  "StartAt": "ValidateFile",
+  "States": {
+    "ValidateFile": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:validateFileLambda",
+      "Next": "ProcessFile"
+    },
+    "ProcessFile": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:processFileLambda",
+      "Next": "SaveToDynamoDB"
+    },
+    "SaveToDynamoDB": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "FileResults",
+        "Item": {
+          "fileName": {
+            "S.$": "$.fileName"
+          },
+          "Status": {
+            "S.$": "$.status"
+          },
+          "Timestamp": {
+            "S.$": "$.timestamp"
+          }
+        }
+      },
+      "Next": "NotifySuccess"
+    },
+    "NotifySuccess": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:REGION:ACCOUNT_ID:FileValidatedTopic",
+        "Message.$": "$.status"
+      },
+      "End": true
+    }
+  }
+}
 
