@@ -1,0 +1,24 @@
+{
+  "Comment": "Workflow de mensageria com SNS e SQS",
+  "StartAt": "PublishToSNS",
+  "States": {
+    "PublishToSNS": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:REGION:ACCOUNT_ID:MyTopic",
+        "Message": "Mensagem enviada pelo Step Function"
+      },
+      "Next": "SendToSQS"
+    },
+    "SendToSQS": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sqs:sendMessage",
+      "Parameters": {
+        "QueueUrl": "https://sqs.REGION.amazonaws.com/ACCOUNT_ID/MyQueue",
+        "MessageBody": "Mensagem enfileirada pelo Step Function"
+      },
+      "End": true
+    }
+  }
+}

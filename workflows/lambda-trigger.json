@@ -1,0 +1,11 @@
+{
+  "Comment": "Workflow simples para acionar uma Lambda",
+  "StartAt": "TriggerLambda",
+  "States": {
+    "TriggerLambda": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:exampleLambda",
+      "End": true
+    }
+  }
+}
